@@ -1,0 +1,305 @@
+{
+  "name": "burguerBR",
+  "intents": [
+    {
+      "intent": "pedir_burguer",
+      "examples": [
+        {
+          "text": "mal passada"
+        },
+        {
+          "text": "me vê um hamburguer"
+        },
+        {
+          "text": "x bacon"
+        },
+        {
+          "text": "quero pedir um lanche"
+        },
+        {
+          "text": "eu gostaria de fazer um pedido"
+        },
+        {
+          "text": "boa noite"
+        },
+        {
+          "text": "por favor quero fazer meu pedido"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "saudacao",
+      "examples": [
+        {
+          "text": "oi"
+        },
+        {
+          "text": "ola"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "informacao_entrega",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "CEP",
+          "patterns": [
+            "[0-9]{5}-*[0-9]{3}"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "sabor",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "x-salada",
+          "synonyms": [
+            "salada"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "x-bacon",
+          "synonyms": [
+            "bacon"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "x-galinha",
+          "synonyms": [
+            "frango",
+            "galinha"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "x da casa",
+          "synonyms": [
+            "casa",
+            "maior"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "sys-date",
+      "values": []
+    },
+    {
+      "entity": "ponto_carne",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Mal Passada",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Ao ponto",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Bem passada",
+          "synonyms": []
+        }
+      ]
+    }
+  ],
+  "language": "pt-br",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-09-20"
+    }
+  },
+  "description": "",
+  "dialog_nodes": [
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": []
+        }
+      },
+      "parent": "node_1_1520778602178",
+      "disabled": true,
+      "metadata": {},
+      "dialog_node": "node_10_1520861355760"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Qual o lanche você gostaria?"
+      },
+      "parent": "slot_2_1560600014869",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1560600014869",
+      "previous_sibling": "handler_3_1560600014869"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_2_1560600014869",
+      "context": {
+        "sabor": "@sabor"
+      },
+      "conditions": "@sabor",
+      "event_name": "input",
+      "dialog_node": "handler_3_1560600014869"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Poderia informar seu CEP?"
+      },
+      "parent": "slot_8_1560600056411",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1560600056411",
+      "previous_sibling": "handler_9_1560600056411"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_8_1560600056411",
+      "context": {
+        "informacao_entrega": "@informacao_entrega"
+      },
+      "conditions": "@informacao_entrega",
+      "event_name": "input",
+      "dialog_node": "handler_9_1560600056411"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1560599346471",
+      "variable": "$ponto_carne",
+      "dialog_node": "slot_5_1560600042473",
+      "previous_sibling": "slot_2_1560600014869"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_1_1560599346471",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1560600014848",
+      "previous_sibling": "slot_8_1560600056411"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1560599346471",
+      "variable": "$informacao_entrega",
+      "dialog_node": "slot_8_1560600056411",
+      "previous_sibling": "slot_5_1560600042473"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1560599346471",
+      "variable": "$sabor",
+      "dialog_node": "slot_2_1560600014869"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Qual o ponto da carne?"
+      },
+      "parent": "slot_5_1560600042473",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1560600042473",
+      "previous_sibling": "handler_6_1560600042473"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_5_1560600042473",
+      "context": {
+        "ponto_carne": "@ponto_carne"
+      },
+      "conditions": "@ponto_carne",
+      "event_name": "input",
+      "dialog_node": "handler_6_1560600042473"
+    },
+    {
+      "type": "frame",
+      "title": "#pedir_hamburguer",
+      "output": {
+        "text": {
+          "values": [
+            "ótimo, já estamos preparando seu lanche."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "conditions": "#pedir_burguer",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1560599346471",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_1_1520778602178",
+      "digress_out_slots": "not_allowed"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "text": {
+          "values": [
+            "Eu não entendi. Você pode tentar reformular a frase.",
+            "Você pode reformular sua afirmação? Eu não estou entendendo.",
+            "Eu não entendi o sentido."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_1_1560599346471"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "Opa e aí? Já decidiu o que vai pedir?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#saudacao",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1520778602178",
+      "digress_out": "allow_all",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "text": {
+          "values": [
+            "Olá seja bem vindo ao bot da Hamburgueria Topperson! E aí, o que você vai pedir hoje?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    }
+  ],
+  "workspace_id": "ce87bc25-d273-41ca-b7da-bbd5bb21e39e",
+  "counterexamples": [],
+  "learning_opt_out": false,
+  "status": "Available"
+}

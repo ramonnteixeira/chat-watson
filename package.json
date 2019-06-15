@@ -1,0 +1,23 @@
+{
+  "name": "cloud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "sls deploy",
+    "remove": "sls remove",
+    "logs": "sls logs -t",
+    "start": "sls offline start --stage local",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "serverless-http": "^2.0.2"
+  },
+  "devDependencies": {
+    "serverless-offline": "^4.10.6"
+  }
+}

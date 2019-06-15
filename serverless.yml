@@ -1,0 +1,51 @@
+service: ibm-chatbot-function
+app: ibm-chatbot
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: us-east-1
+  stackName: ibm-chatbot-stack
+  memorySize: 128
+  timeout: 2
+  logRetentionInDays: 3
+  stage: dev
+  apiName: ServerlessRestApi
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
+resources:
+  Resources:
+    ApiGatewayCustomName:
+        Type: AWS::ApiGateway::DomainName
+        Properties:
+          CertificateArn: arn:aws:acm:us-east-1:900637626098:certificate/ec621460-f71d-4a87-9ce2-027206c7f8c4
+          DomainName: chat.olokinho.ml
+    ApiMapping:
+        Type: 'AWS::ApiGateway::BasePathMapping'
+        DependsOn: [ApiGatewayRestApi]
+        Properties:
+          BasePath: ''
+          DomainName: !Ref ApiGatewayCustomName
+          RestApiId: !Ref ApiGatewayRestApi
+          Stage: dev
+    Route53Api:
+        Type: AWS::Route53::RecordSetGroup
+        Properties:
+          HostedZoneName: olokinho.ml.
+          Comment: Alias para API Gateway.
+          RecordSets:
+          - Name: chat.olokinho.ml.
+            Type: A
+            AliasTarget:
+              EvaluateTargetHealth: false
+              HostedZoneId: !GetAtt ApiGatewayCustomName.DistributionHostedZoneId
+              DNSName: !GetAtt ApiGatewayCustomName.DistributionDomainName
