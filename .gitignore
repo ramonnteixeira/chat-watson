@@ -7,3 +7,11 @@ jspm_packages
 
 # offline dynamo
 .dynamodb
+
+
+# intellij
+.idea
+
+
+#OS
+.DS_Store
