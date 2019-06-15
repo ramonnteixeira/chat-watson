@@ -246,8 +246,12 @@ html{
 }
 
 .options-list {
-  color: #8d25e8;
+  color: #54EED0;
   cursor: pointer;
+}
+
+li {
+  list-style-type: none;
 }
 
 .options-button {
