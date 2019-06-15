@@ -1,26 +1,19 @@
 {
-  "name": "@ibm-watson/assistant-simple",
+  "name": "uni-burguer",
   "description": "A simple Node.js based web app which shows how to use the Watson Assistant API to recognize user intents.",
   "version": "0.1.1",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "sls offline start",
-    "test-integration": "casperjs test ./test/integration/test.*.js",
-    "test-integration-runner": "NODE_ENV=test node casper-runner.js",
-    "test": "npm run lint && npm run test-integration-runner",
-    "test-unit": "jest test/unit --coverage",
-    "lint": "eslint .",
-    "autofix": "eslint --fix .",
-    "codecov": "npm run test && (codecov || true)",
     "deploy": "sls deploy",
     "remove": "sls remove",
     "logs": "sls logs -t"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/watson-developer-cloud/assistant-simple.git"
+    "url": "git+https://github.com/ramonnteixeira/chat-watson.git"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
@@ -28,31 +21,15 @@
     "ibm-watson": "^4.2.0",
     "serverless-http": "^2.0.2"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
-  },
   "engines": {
     "node": ">=8.15.0"
   },
   "engineStrict": true,
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "casperjs": "^1.1.4",
-    "codecov": "^3.2.0",
-    "eslint": "^5.14.0",
-    "jest": "^24.1.0",
-    "phantomjs-prebuilt": "^2.1.16",
-    "serverless-offline": "^5.3.3",
-    "serverless-offline-dotenv": "0.0.13",
-    "supertest": "^3.4.2"
+    "serverless-offline": "^5.3.3"
   },
   "bugs": {
-    "url": "https://github.com/watson-developer-cloud/assistant-simple/issues"
+    "url": "https://github.com/ramonnteixeira/chat-watson/issues"
   },
-  "homepage": "https://github.com/watson-developer-cloud/assistant-simple#readme",
-  "directories": {
-    "test": "test"
-  },
-  "author": ""
+  "homepage": "https://chat.olokinho.ml"
 }
