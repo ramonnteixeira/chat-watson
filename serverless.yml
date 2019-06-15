@@ -21,6 +21,11 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+    environment:
+      ASSISTANT_ID: 4da1cd31-834c-414c-b73d-41371b056910
+      ASSISTANT_IAM_APIKEY: a4Ayjb7ov-7WMRi8riz594Q_CwzmoAxr6w73484pBl7e
+      ASSISTANT_URL: https://gateway.watsonplatform.net/assistant/api
+
 
 resources:
   Resources:

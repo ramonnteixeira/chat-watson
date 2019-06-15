@@ -1,9 +1,6 @@
 node_modules/
-dist/
-temp/
 .idea/
 coverage
-.env
 npm-debug.log
-.jshintrc
-.DS_Store
+readme_images
+test
